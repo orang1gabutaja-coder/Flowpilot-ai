@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto";
+
 /**
  * Predictable starter planner. It does not call an external AI provider.
  */
@@ -11,14 +13,16 @@ export function createPlan(task) {
   if (typeof task !== "string" || task.trim().length === 0) {
     throw new TypeError("Task must be a non-empty string.");
   }
+
   const cleanTask = task.trim();
   const match = patterns.find((item) => item.test.test(cleanTask));
   const titles = match?.steps ?? ["Understand the goal and expected result", "Break the work into smaller tasks", "Complete the tasks in a sensible order", "Review the result against the original goal"];
+
   return {
-    id: `wf_${Date.now().toString(36)}`,
+    id: `wf_${randomUUID()}`,
     task: cleanTask,
     status: "planned",
-    steps: titles.map((title, index) => ({ id: `step_${index + 1}`, title, status: "pending" })),
+    steps: titles.map((title) => ({ id: `step_${randomUUID()}`, title, status: "pending" })),
     createdAt: new Date().toISOString()
   };
 }
