@@ -1,0 +1,9 @@
+{
+  "name": "flowpilot-ai",
+  "version": "0.1.0",
+  "private": false,
+  "description": "An open-source AI workflow orchestrator for efficient multi-model coordination.",
+  "type": "module",
+  "scripts": { "start": "node src/server.js", "test": "node --test" },
+  "engines": { "node": ">=20" }
+}
